@@ -1,0 +1,20 @@
+{
+  "test_vertical": [
+    {
+      "intent": "alpha",
+      "utterances": [
+        "hello, \"world\""
+      ],
+      "reply": "Line1\nLine2, \"quoted\""
+    },
+    {
+      "intent": "beta",
+      "utterances": [
+        "hi"
+      ],
+      "reply": "ok",
+      "tone": "custom tone",
+      "source_notes": "custom source"
+    }
+  ]
+}
