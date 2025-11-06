@@ -20,7 +20,7 @@ sleep 15
 echo "==> Importing n8n flows via API (inactive by default)..."
 N8N_BASE="${N8N_BASE:-http://ops.localhost/n8n}"
 for flow in n8n/flows/*.json; do
-  curl -s -X POST "$N8N_BASE/rest/workflows"     -H 'Content-Type: application/json'     --data-binary "@${flow}" >/dev/null || true
+  curl -s -X POST "$N8N_BASE/rest/workflows"     -H 'Content-Type: application/json'     --data-binary "@${flow}" >/dev/null
 done
 
 echo "==> Posting Slack 'stack online' alert (if webhook is set)..."
