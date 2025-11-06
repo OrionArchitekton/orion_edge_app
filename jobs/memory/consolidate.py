@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 LF_BASE = os.environ.get("LANGFUSE_BASE_URL", "http://langfuse:3000")
 LF_KEY  = os.environ.get("LANGFUSE_API_KEY", "")
-PG_URL  = os.environ.get("POSTGRES_URL")
+PG_URL  = os.environ["POSTGRES_URL"]
 
 def main():
     since = (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()
