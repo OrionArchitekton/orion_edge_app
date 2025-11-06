@@ -14,6 +14,7 @@ The repository intentionally ignores `env/*.env` example files. Maintain the can
    - `VLLM_BASE_URL` (optional when running local models)
    - `SLACK_WEBHOOK_URL` (required for daily reports and Slack integrations)
    - `WEBHOOK_SECRET` (required for daily reports; generate with `openssl rand -base64 32`)
+   - `GOOGLE_DRIVE_SA_JSON_BASE64` (optional; base64-encoded Google Drive service account JSON)
    - Slack webhooks, OpenAI keys, and any commerce integrations
 
 3. **Version the templates** in your secrets repo. During onboarding copy them to the edge host:

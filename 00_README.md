@@ -1,5 +1,7 @@
 # E-Commerce Chatbot Launch Kit
 
+> **Quick Links:** For orchestrator documentation, see [`orchestrator_kit/README.md`](./orchestrator_kit/README.md) → [`MANIFEST.md`](./orchestrator_kit/MANIFEST.md)
+
 This kit provides the single source of truth for the chatbot launch. All artifacts are organized to align with the 7-day execution plan detailed in the [Orchestrator Kit](./chatbot_launch_role_slackkit_v_1.1.md).
 
 > **Nov 2025 Update:** Canonical deliverables now live in `orchestrator_kit/`. Use `orchestrator_kit/README.md` → `MANIFEST.md` for quick links, and update prompts or docs to reference the new paths when contributing.

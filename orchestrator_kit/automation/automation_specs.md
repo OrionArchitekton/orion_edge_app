@@ -45,7 +45,7 @@
 - **Slack digest functions:** Use `scripts/slack_digest.js` (Node) or `scripts/slack_digest.py` (Python) to post executive daily digests
 - **Digest fields:** Decisions, Actions (next 48h), Deltas, with links to JSON/Markdown reports
 - **Environment:** Requires `SLACK_WEBHOOK_URL` and `WEBHOOK_SECRET` (generate with `openssl rand -base64 32`)
-- **Usage:** See `docs/Dail_Executive_Summary.md` for setup instructions
+- **Usage:** See `docs/Daily_Executive_Summary.md` for setup instructions
 
 ##### PASS/FAIL — automation\_specs.md
 

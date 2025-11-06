@@ -1,4 +1,6 @@
 #cloud-config
+# Note: Set TS_AUTHKEY environment variable when using this cloud-init script.
+# For Terraform, pass TS_AUTHKEY as a variable. Never commit real auth keys to the repository.
 hostname: edge-01
 timezone: America/Los_Angeles
 package_update: true
@@ -6,7 +8,7 @@ package_upgrade: true
 packages: [curl, ca-certificates, gnupg, docker.io, docker-compose-v2, git, unzip, terraform]
 runcmd:
   - curl -fsSL https://tailscale.com/install.sh | sh
-  - tailscale up --authkey=${tskey-auth-kcJ5FKMav311CNTRL-KcBqyFD6xZjQwAosMqHmZjrjoCFTKoHG} --ssh --hostname=edge-01 --advertise-tags=tag:edge,tag:prod
+  - tailscale up --authkey=${TS_AUTHKEY} --ssh --hostname=edge-01 --advertise-tags=tag:edge,tag:prod
   - mkdir -p /opt/orion && cd /opt/orion
   - git clone ${REPO_URL: https://github.com/OrionArchitekton/orion_edge_app.git} || true
   - cd orion_edge_app

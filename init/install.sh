@@ -24,8 +24,8 @@ for flow in n8n/flows/*.json; do
 done
 
 echo "==> Posting Slack 'stack online' alert (if webhook is set)..."
-if [ -n "${SLACK_WEBHOOK:-}" ]; then
-  curl -s -X POST "$SLACK_WEBHOOK" -H 'Content-type: application/json'     --data "{"text":"Cosmocrat v1 stack online on $(hostname)"}" >/dev/null || true
+if [ -n "${SLACK_WEBHOOK_URL:-}" ]; then
+  curl -s -X POST "$SLACK_WEBHOOK_URL" -H 'Content-type: application/json'     --data "{"text":"Cosmocrat v1 stack online on $(hostname)"}" >/dev/null || true
 fi
 
 echo "==> Done. Open Langfuse and n8n from your ops URL."

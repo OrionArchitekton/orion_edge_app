@@ -23,7 +23,8 @@
    - `REDIS_URL`
    - `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST`
    - `VLLM_BASE_URL` (optional if you serve a local model)
-3. Consolidate memories:
+3. **Langfuse v3 requirement:** The compose file includes ClickHouse (required for v3). Ensure `CLICKHOUSE_PASSWORD` in `deploy/cosmocrat-v1.compose.yml` is set to a secure value (not `change-me`). Also set `NEXTAUTH_SECRET` and `SALT` to non-default values.
+4. Consolidate memories:
 
    ```bash
    python3 jobs/memory/consolidate.py --commit
@@ -62,3 +63,31 @@
 - MCP API: `curl -s http://localhost/mcp/healthz`
 - vLLM models: `curl -s http://localhost:8000/v1/models`
 - Langfuse UI: `http://<edge-ip>:3000/`
+
+## Production Deployment (Traefik + DNS)
+
+For production deployments, update Traefik host rules in `deploy/cosmocrat-v1.compose.yml`:
+
+1. **Replace `ops.localhost` and `mcp.localhost`** with your actual domain names:
+   - `ops.localhost` → `ops.yourdomain.com`
+   - `mcp.localhost` → `mcp.yourdomain.com`
+
+2. **Add DNS A records** pointing to your edge host IP:
+   ```
+   ops.yourdomain.com  →  <edge-ip>
+   mcp.yourdomain.com  →  <edge-ip>
+   ```
+
+3. **Update `NEXTAUTH_URL`** in the Langfuse service to match your domain:
+   ```yaml
+   NEXTAUTH_URL: https://ops.yourdomain.com/langfuse
+   ```
+
+4. **For HTTPS**, add a Traefik Let's Encrypt certificate resolver (see Traefik docs) or use a reverse proxy with SSL termination.
+
+Example Traefik labels for production:
+```yaml
+labels:
+  - traefik.http.routers.langfuse.rule=Host(`ops.yourdomain.com`) && PathPrefix(`/langfuse`)
+  - traefik.http.routers.langfuse.tls.certresolver=letsencrypt
+```
