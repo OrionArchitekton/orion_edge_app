@@ -1,0 +1,12 @@
+# ONBOARDING CHECKLIST — Cosmocrat v1 (First 2 Hours)
+- [ ] Tailscale up (ephemeral key, SSH enabled); device visible in admin
+- [ ] Repo present at /opt/orion/orion_edge_app
+- [ ] env/.env.core filled (PG/Redis/Langfuse/vLLM/Slack); re/ecom envs filled
+- [ ] docker compose up -d (deploy/cosmocrat-v1.compose.yml) succeeds
+- [ ] Langfuse reachable; first trace exists
+- [ ] n8n flows imported; credentials created; set Active as needed
+- [ ] RE smoke test: lead_passthrough → Gmail drafts created
+- [ ] E-com smoke test: policy_rag answers from KB (not API)
+- [ ] Daily report run once; Slack digest delivered
+- [ ] KB refresh run once; embeddings count increased
+- [ ] Cloud-hit rate ≤ 30% after first day
