@@ -1,0 +1,43 @@
+
+## webhook\_contracts.json
+
+```json
+{
+  "unknown_event": {
+    "type": "unknown_event",
+    "client": "string",
+    "channel": "web|messenger",
+    "user_id": "string",
+    "question": "string",
+    "email_captured": "boolean",
+    "link_transcript": "url",
+    "created_at_utc": "iso8601"
+  },
+  "deploy_event": {
+    "type": "deploy_event",
+    "client": "string",
+    "version": "semver",
+    "changes": ["string"],
+    "rollback": "url or text",
+    "actor": "string",
+    "published_at_utc": "iso8601"
+  },
+  "kpi_summary": {
+    "type": "kpi_summary",
+    "client": "string",
+    "period": "YYYY-WW",
+    "interactions": "number",
+    "resolution_rate": "number",
+    "leads": "number",
+    "handoffs": "number",
+    "top_topics": ["string"],
+    "wow_deltas": {"interactions":"%","resolution_rate":"%"}
+  }
+}
+```
+
+**Mapping notes:** `unknown_event` originates in Zap 2; `deploy_event` from Zap 5; `kpi_summary` from Zap 3. Post all to **#ops‑bot** or **#analytics‑kpi** via Slack Webhook.
+
+##### PASS/FAIL — webhook\_contracts.json
+
+- PASS if: JSON validates, fields populated by Zaps, Slack receives correctly‑typed payloads, links resolvable. Else FAIL.

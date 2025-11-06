@@ -1,21 +1,11 @@
-Vertical,Q,A,Tone,Source/Notes
-beauty,how long is shipping?,"For most US orders, delivery is {{ship_time_us}}. International orders take about {{ship_time_intl}}. You’ll get a tracking link as soon as it ships.","friendly, concise, ≤60 words",faqpack:beauty/shipping_times
-beauty,when will my order arrive?,"For most US orders, delivery is {{ship_time_us}}. International orders take about {{ship_time_intl}}. You’ll get a tracking link as soon as it ships.","friendly, concise, ≤60 words",faqpack:beauty/shipping_times
-beauty,what's your return policy?,"We offer {{return_window_days}}-day returns on unopened items. For exchanges, start an RMA and we’ll help with the swap.","friendly, concise, ≤60 words",faqpack:beauty/returns_exchanges
-beauty,can I exchange a product?,"We offer {{return_window_days}}-day returns on unopened items. For exchanges, start an RMA and we’ll help with the swap.","friendly, concise, ≤60 words",faqpack:beauty/returns_exchanges
-beauty,is this nut-free?,"You can view full ingredients on each product page. If you have allergies, please patch test first and consult a professional for medical concerns.","friendly, concise, ≤60 words",faqpack:beauty/ingredients_allergens
-beauty,are there parabens in this?,"You can view full ingredients on each product page. If you have allergies, please patch test first and consult a professional for medical concerns.","friendly, concise, ≤60 words",faqpack:beauty/ingredients_allergens
-beauty,how do I use this?,"General routine: cleanse → treat/serum → moisturize → SPF (AM). For {{product_name}}, apply {{usage_instructions_short}}.","friendly, concise, ≤60 words",faqpack:beauty/how_to_use_routine
-beauty,what order do I apply?,"General routine: cleanse → treat/serum → moisturize → SPF (AM). For {{product_name}}, apply {{usage_instructions_short}}.","friendly, concise, ≤60 words",faqpack:beauty/how_to_use_routine
-beauty,help me find my shade,Try our shade finder quiz for undertone + depth. You can also DM a photo in natural light for a closer match.,"friendly, concise, ≤60 words",faqpack:beauty/shade_match
-beauty,which color suits me?,Try our shade finder quiz for undertone + depth. You can also DM a photo in natural light for a closer match.,"friendly, concise, ≤60 words",faqpack:beauty/shade_match
-beauty,is this vegan?,{{brand_name}} is {{vegan_status}} and {{cruelty_free_status}}. Look for the badges on each product page.,"friendly, concise, ≤60 words",faqpack:beauty/vegan_cruelty_free
-beauty,cruelty-free?,{{brand_name}} is {{vegan_status}} and {{cruelty_free_status}}. Look for the badges on each product page.,"friendly, concise, ≤60 words",faqpack:beauty/vegan_cruelty_free
-beauty,safe for sensitive skin?,"Every skin is unique—please patch test on a small area first. For medical or dermatology advice, consult a professional.","friendly, concise, ≤60 words",faqpack:beauty/sensitive_skin_patch_test
-beauty,will this irritate me?,"Every skin is unique—please patch test on a small area first. For medical or dermatology advice, consult a professional.","friendly, concise, ≤60 words",faqpack:beauty/sensitive_skin_patch_test
-beauty,any discounts?,Active promos show at checkout. Most codes can’t be stacked—try the best one for your cart.,"friendly, concise, ≤60 words",faqpack:beauty/promo_codes
-beauty,can I stack coupons?,Active promos show at checkout. Most codes can’t be stacked—try the best one for your cart.,"friendly, concise, ≤60 words",faqpack:beauty/promo_codes
-beauty,when is it back in stock?,I can alert you the moment {{product_name}} restocks. What’s the best email to use?,"friendly, concise, ≤60 words",faqpack:beauty/restock_alerts
-beauty,notify me when available,I can alert you the moment {{product_name}} restocks. What’s the best email to use?,"friendly, concise, ≤60 words",faqpack:beauty/restock_alerts
-beauty,can I cancel my order?,We can help if your order hasn’t shipped yet. Share your order # and the change you need—I'll check status now.,"friendly, concise, ≤60 words",faqpack:beauty/order_change_cancel
-beauty,I need to change my address,We can help if your order hasn’t shipped yet. Share your order # and the change you need—I'll check status now.,"friendly, concise, ≤60 words",faqpack:beauty/order_change_cancel
+vertical,question,answer,tone,source_notes
+"beauty","how do I use this?","General routine: cleanse → treat/serum → moisturize → SPF (AM). For {{product_name}}, apply {{usage_instructions_short}}.","friendly, concise, ≤60 words","faqpack:beauty/how_to_use_routine"
+"beauty","is this nut-free?","You can view full ingredients on each product page. If you have allergies, please patch test first and consult a professional for medical concerns.","friendly, concise, ≤60 words","faqpack:beauty/ingredients_allergens"
+"beauty","can I cancel my order?","We can help if your order hasn’t shipped yet. Share your order # and the change you need—I'll check status now.","friendly, concise, ≤60 words","faqpack:beauty/order_change_cancel"
+"beauty","any discounts?","Active promos show at checkout. Most codes can’t be stacked—try the best one for your cart.","friendly, concise, ≤60 words","faqpack:beauty/promo_codes"
+"beauty","when is it back in stock?","I can alert you the moment {{product_name}} restocks. What’s the best email to use?","friendly, concise, ≤60 words","faqpack:beauty/restock_alerts"
+"beauty","what's your return policy?","We offer {{return_window_days}}-day returns on unopened items. For exchanges, start an RMA and we’ll help with the swap.","friendly, concise, ≤60 words","faqpack:beauty/returns_exchanges"
+"beauty","safe for sensitive skin?","Every skin is unique—please patch test on a small area first. For medical or dermatology advice, consult a professional.","friendly, concise, ≤60 words","faqpack:beauty/sensitive_skin_patch_test"
+"beauty","help me find my shade","Try our shade finder quiz for undertone + depth. You can also DM a photo in natural light for a closer match.","friendly, concise, ≤60 words","faqpack:beauty/shade_match"
+"beauty","how long is shipping?","For most US orders, delivery is {{ship_time_us}}. International orders take about {{ship_time_intl}}. You’ll get a tracking link as soon as it ships.","friendly, concise, ≤60 words","faqpack:beauty/shipping_times"
+"beauty","is this vegan?","{{brand_name}} is {{vegan_status}} and {{cruelty_free_status}}. Look for the badges on each product page.","friendly, concise, ≤60 words","faqpack:beauty/vegan_cruelty_free"

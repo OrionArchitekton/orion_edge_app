@@ -2,8 +2,6 @@
 
 **Constraints:** budget \$0–\$30/mo • web chat first • ≤60‑word customer replies • defer unknowns safely • no sensitive data collection.
 
-> **Structure Update (Nov 2025):** All orchestrator-owned assets now live in `orchestrator_kit/` (see `orchestrator_kit/README.md`). Paths referenced below point to the canonical copies there unless otherwise stated.
-
 **Artifacts included:**
 
 - roles\_matrix.md
@@ -113,7 +111,7 @@ Goals: …
 Completed: …
 Today: …
 Blockers: …
-Links: orchestrator_kit/artifacts/01_stack.md | orchestrator_kit/artifacts/02_scope_faq.csv | orchestrator_kit/artifacts/03_flow_spec.json
+Links: 01_stack.md | 02_scope_faq.csv | 03_flow_spec.json
 ```
 
 ### Artifact handoff
@@ -358,7 +356,7 @@ Create a 7-day execution plan with owned tasks and deliverables for Agents 1–1
   - Agent **1**: Select **web chat** (Landbot trial vs ManyChat); draft **01\_stack.md** with env vars & cost table.
   - Agent **5**: Provision GSheets (**Interactions**, **Unknowns**, **KPI**, **Prospects**), create [**automation@agency.com**](mailto\:automation@agency.com) and share RO.
   - Agent **0**: Publish cadence & DRI; confirm constraints.
-- **Artifacts/Links:** `orchestrator_kit/guides/slack_channels.md`, `orchestrator_kit/artifacts/01_stack.md`, `orchestrator_kit/artifacts/05_sheets_setup.md`, GSheets URLs.
+- **Artifacts/Links:** `slack_channels.md`, `01_stack.md`, `05_sheets_setup.md`, GSheets URLs.
 - **PASS/FAIL:** Webhooks post test 🟢; Sheets accept writes; pins visible; projected tools ≤\$30/mo.
 - **Owners:** 7, 1, 5, 0.
 
@@ -371,7 +369,7 @@ Create a 7-day execution plan with owned tasks and deliverables for Agents 1–1
   - Agent **4**: Draft tone & length guard in `04_prompts.md` (≤60 words; deferral copy).
   - Agent **1**: Configure OpenAI (gpt‑4o‑mini) & webhook endpoints.
   - Agent **5**: Finalize Sheet schemas (columns from automation\_specs.md).
-- **Artifacts/Links:** `orchestrator_kit/artifacts/02_scope_faq.csv`, `orchestrator_kit/artifacts/03_flow_spec.json`, `orchestrator_kit/artifacts/04_prompts.md`, `orchestrator_kit/artifacts/01_stack.md`.
+- **Artifacts/Links:** `02_scope_faq.csv`, `03_flow_spec.json`, `04_prompts.md`, `01_stack.md`.
 - **PASS/FAIL:** Unknown path present; at least 3 happy paths; prompts enforce ≤60 words; sample row logs to **Interactions**.
 - **Owners:** 2, 3, 4, 1, 5.
 
