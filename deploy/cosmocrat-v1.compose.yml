@@ -41,16 +41,44 @@ services:
       - traefik.enable=false
     restart: unless-stopped
 
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    restart: always
+    environment:
+      <<: *common-env
+      CLICKHOUSE_DB: langfuse
+      CLICKHOUSE_USER: langfuse
+      CLICKHOUSE_PASSWORD: change-me
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --user $$CLICKHOUSE_USER --password $$CLICKHOUSE_PASSWORD -q 'select 1'"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    labels:
+      - traefik.enable=false
+    restart: unless-stopped
+
   langfuse:
     image: ghcr.io/langfuse/langfuse:latest
     environment:
       <<: *common-env
       NEXT_PUBLIC_SIGNUP_DISABLED: "true"
+      # Required for v3: ClickHouse for analytics
+      CLICKHOUSE_URL: "clickhouse://langfuse:change-me@clickhouse:9000/langfuse"
+      # Postgres still required for metadata
       DATABASE_URL: postgresql://cosmocrat:change-me@postgres:5432/cosmocrat
       NEXTAUTH_URL: http://ops.localhost/langfuse
       NEXTAUTH_SECRET: replace-me
       SALT: replace-me
-    depends_on: [postgres]
+      NODE_ENV: production
+      PORT: "3000"
+    depends_on:
+      postgres:
+        condition: service_started
+      clickhouse:
+        condition: service_healthy
     labels:
       - traefik.enable=true
       - traefik.http.routers.langfuse.rule=Host(`ops.localhost`) && PathPrefix(`/langfuse`)
@@ -120,7 +148,22 @@ services:
     depends_on: [postgres, langfuse]
     restart: unless-stopped
 
+  runner-daily-report:
+    image: ghcr.io/orionarchitekton/orion-runner:latest
+    restart: always
+    environment:
+      <<: *common-env
+      EXEC_ANALYST_URL: https://edge.orionapexcapital.com/api/analyst
+      STORAGE_PATH: /data/reports
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+      JOB_NAME: exec-daily-v3
+    volumes:
+      - ./data/reports:/data/reports
+      - ./data/conversations:/data/conversations
+    command: ["python3", "runner.py", "--daily"]
+
 volumes:
   pg_data:
   redis_data:
   n8n_data:
+  clickhouse_data:

@@ -7,7 +7,7 @@ This kit provides the single source of truth for the chatbot launch. All artifac
 ## Quick Install
 
 ```bash
-docker compose -f cosmocrat_v1/deploy/cosmocrat-v1.compose.yml up -d
+docker compose -f deploy/cosmocrat-v1.compose.yml up -d
 python3 jobs/memory/consolidate.py --commit
 ```
 

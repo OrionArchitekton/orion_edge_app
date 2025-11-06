@@ -7,7 +7,7 @@
 
 ## Step 2 — Bring the Stack Online
 - Fill environment files (see `docs/DEV_PLAYBOOK.md` and `docs/ENV_TEMPLATES.md`).
-- `docker compose -f cosmocrat_v1/deploy/cosmocrat-v1.compose.yml up -d`.
+- `docker compose -f deploy/cosmocrat-v1.compose.yml up -d`.
 
 ## Step 3 — Automations & n8n
 - Open `http://<edge-ip>:5678/` and create the owner account (self-hosted n8n; no Cloud required).
@@ -39,6 +39,24 @@
 5. Verify recall:
    - Ask the bot something that exists only in the imported pack.
    - Confirm the Langfuse trace shows `memory.hit=true` and links to the stored memory.
+
+## Step 5 — Daily Report Runner (Optional)
+
+1. Set Slack webhook environment variables in `env/biz_core.env`:
+   - `SLACK_WEBHOOK_URL` (your Slack incoming webhook URL)
+   - `WEBHOOK_SECRET` (generate with `openssl rand -base64 32`)
+
+2. Start the daily report runner:
+
+   ```bash
+   docker compose -f deploy/cosmocrat-v1.compose.yml up -d runner-daily-report
+   ```
+
+3. Verify the runner is working:
+
+   ```bash
+   docker logs --tail=30 deploy-runner-daily-report-1
+   ```
 
 ## Health Checks
 - MCP API: `curl -s http://localhost/mcp/healthz`

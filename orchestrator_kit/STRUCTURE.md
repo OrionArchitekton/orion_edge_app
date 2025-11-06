@@ -93,6 +93,7 @@ All cross-references (agent prompts, README files, CI scripts) are being updated
 - ✅ Automation assets consolidated under `orchestrator_kit/automation/` (including Cloudflare worker code and Supabase schema).
 - ✅ Governance docs consolidated under `orchestrator_kit/guides/` with updated links in `docs/kit/`.
 - 🔄 Legacy launch handbook (`docs/kit/chatbot_launch_role_slackkit_v_1.1.md`) still references historical narrative; keep until marketing revamp completes.
+- 🔄 **Legacy bridges:** `agents_registry.yaml` and `agent_workspaces/docs_organizer/boot_prompt.sh` intentionally point to `agent_workspaces/` paths temporarily. These are compatibility shims until boot tooling migrates to `orchestrator_kit/` paths. Comments in these files note the future swap.
 - 🔄 Run `scripts/cleanup_agent_workspaces.sh` once all tooling points to `orchestrator_kit/` to delete the compatibility shims.
 
 

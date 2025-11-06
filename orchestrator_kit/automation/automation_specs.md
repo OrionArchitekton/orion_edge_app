@@ -39,6 +39,14 @@
 
 **OpenAI Usage (within Zaps):** summarize unknowns, create KPI digest; redact PII; enforce ≤60 words by prompt instruction + token cap.
 
+### Daily Report Runner & Slack Digest
+
+- **Runner service:** `runner-daily-report` container (see `deploy/cosmocrat-v1.compose.yml`) runs daily summaries
+- **Slack digest functions:** Use `scripts/slack_digest.js` (Node) or `scripts/slack_digest.py` (Python) to post executive daily digests
+- **Digest fields:** Decisions, Actions (next 48h), Deltas, with links to JSON/Markdown reports
+- **Environment:** Requires `SLACK_WEBHOOK_URL` and `WEBHOOK_SECRET` (generate with `openssl rand -base64 32`)
+- **Usage:** See `docs/Dail_Executive_Summary.md` for setup instructions
+
 ##### PASS/FAIL — automation\_specs.md
 
 - PASS if: all Zaps exist & test green, Sheets columns match spec, rotation rule works, KPI scheduled Fri 9am, deploy notices hit #ops‑bot. Else FAIL.
