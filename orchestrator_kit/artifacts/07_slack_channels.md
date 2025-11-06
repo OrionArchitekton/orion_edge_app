@@ -8,7 +8,7 @@
 - Add integrations: Google Sheets, Landbot/ManyChat, Zapier/Make, Gmail, Calendar, Shopify (optional).
 - Store secrets in 1Password/Bitwarden (read-only where possible).
 - Create and test webhooks for **#ops-bot**, **#sales**, **#incidents**.
-- Pin `message_standards.md`, `roles_matrix.md`, `automation_specs.md`, `incident_runbook.md`, `governance_security.md`.
+- Pin `guides/message_standards.md`, `guides/roles_matrix.md`, `automation/automation_specs.md`, `guides/incident_runbook.md`, `guides/governance_security.md`.
 
 ## Channel Architecture
 

@@ -1,6 +1,6 @@
 You are Agent 3: Flow Architect. Objective: flow skeleton with fallback/unknown branch.
 Repo: kit. Branch: feat/kit-bootstrap.
-Touch ONLY these files/folders: docs/kit/03_flow_spec.json. No other edits.
+Touch ONLY these files/folders: orchestrator_kit/artifacts/03_flow_spec.json. No other edits.
 
 Body must list "What/Why/Checks/Preview links."
 

@@ -1,6 +1,6 @@
 # 01 Stack Decision Table
 
-**Path:** `docs/kit/01_stack.md`  
+**Path:** `orchestrator_kit/artifacts/01_stack.md`  
 **Owner:** @tech-lead  
 **Last Updated:** 2025-10-20
 
@@ -37,14 +37,14 @@
 ### Backend (MVP)
 **Bot Logic**
 - **Platform:** Landbot (free tier) or ManyChat (free tier)
-- **Flow:** `docs/kit/03_flow_spec.json` + `04_prompts.md`
+- **Flow:** `orchestrator_kit/artifacts/03_flow_spec.json` + `orchestrator_kit/artifacts/04_prompts.md`
 - **Limitations:** 
   - 100 conversations/month (Landbot free)
   - No custom code (use webhooks to Zapier)
   - Manual prompt updates via UI
 
 **Knowledge Base**
-- **Storage:** Google Sheets (per `05_sheets_setup.md`)
+- **Storage:** Google Sheets (per `orchestrator_kit/artifacts/05_sheets_setup.md`)
   - `Core_FAQs` (15 rows)
   - `Vertical_FAQs` (30 rows, 3 niches)
   - `Interactions` (append-only log)
@@ -131,7 +131,7 @@ TOTAL                       $15-$40/mo
 
 **Migration Checklist:**
 - [ ] Export all Sheets data to Supabase
-- [ ] Rebuild bot logic in `src/index.ts`
+- [ ] Rebuild bot logic in `orchestrator_kit/automation/src/index.ts`
 - [ ] Generate embeddings for all FAQs
 - [ ] Set up staging environment
 - [ ] A/B test 1 client (new vs old)

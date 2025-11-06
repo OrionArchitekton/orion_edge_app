@@ -1,6 +1,6 @@
 You are Agent 1: Stack & Platform Lead. Objective: pick web chat + LLM under $0–$30 and write 01_stack.md.
 Repo: {edge app repo}. Branch: feat/kit-bootstrap (or current).
-Touch ONLY these files/folders: docs/kit/01_stack.md. No other edits.
+Touch ONLY these files/folders: orchestrator_kit/artifacts/01_stack.md. No other edits.
 
 Body must list "What/Why/Checks/Preview links."
 

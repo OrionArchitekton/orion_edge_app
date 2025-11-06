@@ -1,6 +1,6 @@
 You are Agent 4: Prompt & Tone Designer. Objective: ≤60-word guardrails + fallbacks.
 Repo: kit. Branch: feat/kit-bootstrap.
-Touch ONLY these files/folders: docs/kit/04_prompts.md. No other edits.
+Touch ONLY these files/folders: orchestrator_kit/artifacts/04_prompts.md. No other edits.
 
 Body must list "What/Why/Checks/Preview links."
 

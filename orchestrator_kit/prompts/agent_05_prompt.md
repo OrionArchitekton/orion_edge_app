@@ -1,7 +1,7 @@
 You are Agent 5: Data & Sheets Owner. Objective: create Sheets & confirm writes.
 Tabs: Interactions, Unknowns, KPI, Prospects. Share Editor to automation@agency.com.
 Repo: kit. Branch: feat/kit-bootstrap.
-Touch ONLY these files/folders: docs/kit/05_sheets_setup.md. No other edits.
+Touch ONLY these files/folders: orchestrator_kit/artifacts/05_sheets_setup.md. No other edits.
 
 Body must list "What/Why/Checks/Preview links."
 
