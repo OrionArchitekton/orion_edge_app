@@ -1,11 +1,21 @@
-vertical,question,answer,tone,source_notes
-"pets","how do subscriptions work?","Choose your schedule at checkout. You can skip, pause, or cancel any time from your account—no fees.","friendly, concise, ≤60 words","faqpack:pets/food_subscription"
-"pets","is this grain-free?","Ingredients are listed on each product page. For allergies or special diets, please consult your vet for medical advice.","friendly, concise, ≤60 words","faqpack:pets/ingredients_dietary"
-"pets","do you have bundles?","Yes—our multi-pet bundles save more than buying separately. Want me to show the most popular sets?","friendly, concise, ≤60 words","faqpack:pets/multi_pet_bundles"
-"pets","where’s my order?","Share your order # and email, and I’ll fetch the latest tracking update.","friendly, concise, ≤60 words","faqpack:pets/order_status_lookup"
-"pets","when will size small be back?","I can email you the minute size {{variant}} is back. What’s the best email?","friendly, concise, ≤60 words","faqpack:pets/restock_notify"
-"pets","can I return if my dog wore it?","Unused items are returnable within {{return_window_days}} days. For wear/chew issues, message us—some items may be covered under our guarantee.","friendly, concise, ≤60 words","faqpack:pets/returns_policy_used_items"
-"pets","free shipping?","US shipping is {{ship_time_us}}; free shipping on orders over {{free_ship_threshold}}.","friendly, concise, ≤60 words","faqpack:pets/shipping_threshold"
-"pets","what size should I get?","Measure around the chest (widest part) and neck, then compare to our chart. If between sizes, we suggest the larger fit for comfort.","friendly, concise, ≤60 words","faqpack:pets/sizing_harness_collar"
-"pets","is there a warranty?","{{brand_name}} offers a {{warranty_term}} warranty on manufacturing defects. Start a claim and our team will help from there.","friendly, concise, ≤60 words","faqpack:pets/warranty_guarantee"
-"pets","how do I wash the harness?","Most soft goods are hand-wash cold and air-dry. Check your product tag or page for specifics.","friendly, concise, ≤60 words","faqpack:pets/washing_care"
+Vertical,Q,A,Tone,Source/Notes
+pets,what size should I get?,"Measure around the chest (widest part) and neck, then compare to our chart. If between sizes, we suggest the larger fit for comfort.","friendly, concise, ≤60 words",faqpack:pets/sizing_harness_collar
+pets,how do I measure my dog?,"Measure around the chest (widest part) and neck, then compare to our chart. If between sizes, we suggest the larger fit for comfort.","friendly, concise, ≤60 words",faqpack:pets/sizing_harness_collar
+pets,how do subscriptions work?,"Choose your schedule at checkout. You can skip, pause, or cancel any time from your account—no fees.","friendly, concise, ≤60 words",faqpack:pets/food_subscription
+pets,can I pause my autoship?,"Choose your schedule at checkout. You can skip, pause, or cancel any time from your account—no fees.","friendly, concise, ≤60 words",faqpack:pets/food_subscription
+pets,is this grain-free?,"Ingredients are listed on each product page. For allergies or special diets, please consult your vet for medical advice.","friendly, concise, ≤60 words",faqpack:pets/ingredients_dietary
+pets,does it contain chicken?,"Ingredients are listed on each product page. For allergies or special diets, please consult your vet for medical advice.","friendly, concise, ≤60 words",faqpack:pets/ingredients_dietary
+pets,can I return if my dog wore it?,"Unused items are returnable within {{return_window_days}} days. For wear/chew issues, message us—some items may be covered under our guarantee.","friendly, concise, ≤60 words",faqpack:pets/returns_policy_used_items
+pets,chew damage?,"Unused items are returnable within {{return_window_days}} days. For wear/chew issues, message us—some items may be covered under our guarantee.","friendly, concise, ≤60 words",faqpack:pets/returns_policy_used_items
+pets,how do I wash the harness?,Most soft goods are hand-wash cold and air-dry. Check your product tag or page for specifics.,"friendly, concise, ≤60 words",faqpack:pets/washing_care
+pets,bed care instructions?,Most soft goods are hand-wash cold and air-dry. Check your product tag or page for specifics.,"friendly, concise, ≤60 words",faqpack:pets/washing_care
+pets,free shipping?,US shipping is {{ship_time_us}}; free shipping on orders over {{free_ship_threshold}}.,"friendly, concise, ≤60 words",faqpack:pets/shipping_threshold
+pets,shipping cost?,US shipping is {{ship_time_us}}; free shipping on orders over {{free_ship_threshold}}.,"friendly, concise, ≤60 words",faqpack:pets/shipping_threshold
+pets,where’s my order?,"Share your order # and email, and I’ll fetch the latest tracking update.","friendly, concise, ≤60 words",faqpack:pets/order_status_lookup
+pets,track my package,"Share your order # and email, and I’ll fetch the latest tracking update.","friendly, concise, ≤60 words",faqpack:pets/order_status_lookup
+pets,do you have bundles?,Yes—our multi-pet bundles save more than buying separately. Want me to show the most popular sets?,"friendly, concise, ≤60 words",faqpack:pets/multi_pet_bundles
+pets,discount for two dogs?,Yes—our multi-pet bundles save more than buying separately. Want me to show the most popular sets?,"friendly, concise, ≤60 words",faqpack:pets/multi_pet_bundles
+pets,when will size small be back?,I can email you the minute size {{variant}} is back. What’s the best email?,"friendly, concise, ≤60 words",faqpack:pets/restock_notify
+pets,notify me,I can email you the minute size {{variant}} is back. What’s the best email?,"friendly, concise, ≤60 words",faqpack:pets/restock_notify
+pets,is there a warranty?,{{brand_name}} offers a {{warranty_term}} warranty on manufacturing defects. Start a claim and our team will help from there.,"friendly, concise, ≤60 words",faqpack:pets/warranty_guarantee
+pets,what if it breaks?,{{brand_name}} offers a {{warranty_term}} warranty on manufacturing defects. Start a claim and our team will help from there.,"friendly, concise, ≤60 words",faqpack:pets/warranty_guarantee

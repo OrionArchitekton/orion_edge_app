@@ -1,0 +1,10 @@
+# Placeholder: Google Drive Service Account JSON (Base64)
+
+This file should contain a base64-encoded Google Drive service account JSON.
+
+**DO NOT commit real credentials to the repository.**
+
+Set the `GOOGLE_DRIVE_SA_JSON_BASE64` environment variable instead, or store the actual
+base64-encoded service account JSON in your secure secrets manager.
+
+See `docs/ENV_TEMPLATES.md` for environment variable documentation.

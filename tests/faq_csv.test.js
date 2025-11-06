@@ -25,7 +25,7 @@ if (out.status !== 0) {
 }
 
 const csv = out.stdout.trim();
-if (!csv.startsWith('Q,A,Tone,Source/Notes')) {
+if (!csv.startsWith('Vertical,Q,A,Tone,Source/Notes')) {
   console.error('Missing header row');
   process.exit(2);
 }
@@ -37,7 +37,8 @@ if (!csv.includes('"Line1 Line2, ""quoted"""')) {
   console.error('Newlines should be normalised to spaces');
   process.exit(4);
 }
-if (!csv.includes('"custom tone","custom source"')) {
+// Check for custom tone and source (may be quoted or unquoted depending on content)
+if (!csv.includes('custom tone') || !csv.includes('custom source')) {
   console.error('tone/source columns should respect overrides');
   process.exit(5);
 }

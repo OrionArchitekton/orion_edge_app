@@ -116,7 +116,7 @@ safe_write .github/pull_request_template.md <<'MD'
 What changed and why?
 
 ## Checklist
-- [ ] Kit docs updated (`docs/kit/00_README.md`, relevant sections)
+- [ ] Kit docs updated (`00_README.md`, relevant sections)
 - [ ] Prompt guardrails enforced (≤60 words, domain KB boundaries)
 - [ ] CSV generator tested on all faqpack JSONs
 - [ ] Sheets/Zap ranges verified (e.g., `A:K`, `A:G`)
@@ -125,16 +125,16 @@ What changed and why?
 MD
 
 # Guardrails: append a marker if missing
-append_if_missing docs/kit/04_prompts.md "## Guardrails
+append_if_missing orchestrator_kit/artifacts/04_prompts.md "## Guardrails
 - Keep replies ≤60 words
 - Stay within domain-specific KB
 - Defer with approved footer when uncertain"
 
 # sed with backup if file exists
-if [[ -f docs/kit/06_zaps_make.yaml ]]; then
-  cp docs/kit/06_zaps_make.yaml docs/kit/06_zaps_make.yaml.bak
-  sed -i 's/range:\s*"\?[A-Z]:[A-Z]"\?/range: "A:K"/' docs/kit/06_zaps_make.yaml || true
-  grep -q 'A:G' docs/kit/06_zaps_make.yaml || echo '# note: add A:G where narrow export is intended' >> docs/kit/06_zaps_make.yaml
+if [[ -f orchestrator_kit/automation/06_zaps_make.yaml ]]; then
+  cp orchestrator_kit/automation/06_zaps_make.yaml orchestrator_kit/automation/06_zaps_make.yaml.bak
+  sed -i 's/range:\s*"\?[A-Z]:[A-Z]"\?/range: "A:K"/' orchestrator_kit/automation/06_zaps_make.yaml || true
+  grep -q 'A:G' orchestrator_kit/automation/06_zaps_make.yaml || echo '# note: add A:G where narrow export is intended' >> orchestrator_kit/automation/06_zaps_make.yaml
 fi
 
 echo ">> SAFE patch done. Use: npm run validate:faqpacks (if configured)"

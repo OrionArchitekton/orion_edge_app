@@ -129,7 +129,7 @@ cat > .github/pull_request_template.md <<'MD'
 What changed and why?
 
 ## Checklist
-- [ ] Kit docs updated (`docs/kit/00_README.md`, relevant sections)
+- [ ] Kit docs updated (`00_README.md`, relevant sections)
 - [ ] Prompt guardrails enforced (≤60 words, domain KB boundaries)
 - [ ] CSV generator tested on all faqpack JSONs
 - [ ] Sheets/Zap ranges verified (e.g., `A:K`, `A:G`)
@@ -139,11 +139,11 @@ What changed and why?
 MD
 
 # 6) Kit checklist (keeps PRs consistent)
-cat > docs/kit/.checklist.yml <<'YML'
+cat > orchestrator_kit/.checklist.yml <<'YML'
 required:
-  - docs/kit/00_README.md
-  - docs/kit/04_prompts.md
-  - docs/kit/06_zaps_make.yaml
+  - 00_README.md
+  - orchestrator_kit/artifacts/04_prompts.md
+  - orchestrator_kit/automation/06_zaps_make.yaml
   - scripts/faqpack_to_csv.js
   - src/utils/preferences.ts
 rules:
@@ -157,7 +157,7 @@ rules:
 YML
 
 # 7) Guardrails append (only if file exists; else create with section)
-PROMPTS_FILE="docs/kit/04_prompts.md"
+PROMPTS_FILE="orchestrator_kit/artifacts/04_prompts.md"
 if [ -f "$PROMPTS_FILE" ]; then
   if ! grep -q "## Guardrails" "$PROMPTS_FILE"; then
     echo -e "\n## Guardrails\n- Keep replies ≤60 words\n- Stay within domain-specific KB\n- Defer with approved footer when uncertain" >> "$PROMPTS_FILE"
@@ -175,7 +175,7 @@ MD
 fi
 
 # 8) Zap/Sheets range corrections (best-effort, no-op if file missing)
-ZAPS="docs/kit/06_zaps_make.yaml"
+ZAPS="orchestrator_kit/automation/06_zaps_make.yaml"
 if [ -f "$ZAPS" ]; then
   sed -i.bak -E 's/range:\s*"?[A-Z]:[A-Z]"?/range: "A:K"/' "$ZAPS" || true
   # ensure at least one A:G where required (leave content-specific tuning to follow-up)
