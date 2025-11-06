@@ -1,4 +1,4 @@
-# Start Work Template (Legacy Copy)
+# Universal Start Work Template (for any Agent)
 
 You are Agent {N}: {role}. Objective: {one-line goal}.
 Repo: {repo name}. Branch: {branch name or create feat/...}.
@@ -18,6 +18,3 @@ Touch ONLY these files/folders: {file paths}. No other edits.
 When done, open a PR titled:
 {PR title}
 Body must list “What/Why/Checks/Preview links.”
-
-> This legacy copy mirrors `orchestrator_kit/prompts/start_work_template.md`; update that canonical template first, then sync here if compatibility is required.
-

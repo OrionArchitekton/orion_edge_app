@@ -1,0 +1,197 @@
+version: "1.0"
+description: >
+  Zapier/Make automation blueprint for Orion Intelligence Agency’s e-commerce chatbot launch.
+  Aligns with automation_specs.md and webhook_contracts.json.
+
+zaps:
+  - id: zap_a1_interactions_log
+    goal: "Persist every bot interaction for analytics."
+    trigger:
+      app: landbot|manychat
+      event: new_conversation
+    actions:
+      - type: formatter.redact
+        settings:
+          patterns:
+            - "\\b(?:\\d{4}[-\\s]?){3}\\d{4}\\b"   # 16-digit card numbers (Visa, MC, etc.)
+            - "\\b\\d{4}[-\\s]?\\d{6}[-\\s]?\\d{5}\\b"   # 15-digit card numbers (AMEX)
+            - "[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}"
+      - type: google_sheets.append_row
+        sheet: Interactions
+        range: A:K
+        fields:
+          timestamp: "{{timestamp_iso}}"
+          client: "{{client_name}}"
+          user_id: "{{hashed_user_id}}"
+          channel: "{{channel}}"
+          intent: "{{intent}}"
+          matched_faq: "{{matched_faq}}"
+          ai_used: "{{ai_used}}"
+          response_ms: "{{latency_ms}}"
+          handoff: "{{handoff}}"
+          email_captured: "{{email_captured}}"
+          transcript_url: "{{transcript_url}}"
+      - type: google_sheets.update_row
+        when: "{{append_success}}"
+        fields:
+          words_count: "{{word_count(response_text)}}"
+          deferral_phrase_exact: "{{match_deferral(response_text)}}"
+          model: "{{model_name}}"
+
+  - id: zap_a2_unknown_ticket
+    goal: "Escalate unknown questions to humans with rotation."
+    trigger:
+      any_of:
+        - app: manychat
+          event: tag_added
+          tag: unknown_needed
+        - app: workflow
+          event: fallback_no_kb
+    actions:
+      - type: google_sheets.lookup
+        sheet: Unknowns
+        purpose: determine_next_owner
+      - type: formatter.compute
+        result: 
+          owner: "{{toggle_owner(previous_owner)}}"
+          owner_email: "{{lookup_email(owner)}}"
+          due_date: "{{workday(today(),2)}}"
+      - type: slack.webhook
+        channel: "#ops-bot"
+        payload_template: unknown_event
+        payload:
+          client: "{{client_name}}"
+          channel: "{{channel}}"
+          question: "{{user_text_redacted}}"
+          email_captured: "{{email_captured}}"
+          link_transcript: "{{transcript_url}}"
+          created_at_utc: "{{timestamp_utc}}"
+      - type: google_sheets.append_row
+        sheet: Unknowns
+        fields:
+          created_at: "{{timestamp_utc}}"
+          client: "{{client_name}}"
+          channel: "{{channel}}"
+          user_id: "{{hashed_user_id}}"
+          question: "{{user_text_redacted}}"
+          email_captured: "{{email_captured}}"
+          link_transcript: "{{transcript_url}}"
+          owner: "{{owner}}"
+          owner_email: "{{owner_email}}"
+          status: "Open"
+          due_date: "{{due_date}}"
+      - type: gmail.send
+        to: "{{owner_email}}"
+        subject: "UNKNOWN: {{client_name}} – {{user_text_short}}"
+        body_template: unknown_ticket_email
+      - type: google_sheets.append_row
+        when: "{{email_captured}}"
+        sheet: Leads
+        fields:
+          timestamp: "{{timestamp_utc}}"
+          client: "{{client_name}}"
+          source_channel: "{{channel}}"
+          email: "{{user_email}}"
+          consent: true
+          topic: "unknown_followup"
+          captured_via: "unknown"
+
+  - id: zap_a3_lead_capture
+    goal: "Normalize and dedupe new leads."
+    trigger:
+      any_of:
+        - app: google_sheets
+          event: new_row
+          sheet: Interactions
+          condition: "{{email_captured}} = true"
+        - app: webhooks
+          event: landing_page_form
+    actions:
+      - type: formatter.lowercase
+        field: user_email
+      - type: storage.dedupe
+        key: "{{client_name}}::{{user_email}}"
+        window_days: 7
+      - type: google_sheets.upsert_row
+        sheet: Leads
+        key_fields: ["client", "email"]
+        data:
+          timestamp: "{{timestamp_utc}}"
+          client: "{{client_name}}"
+          source_channel: "{{channel_or_lp}}"
+          email: "{{user_email}}"
+          consent: "{{consent_flag}}"
+          topic: "{{topic}}"
+          captured_via: "{{capture_source}}"
+          status: "New"
+
+  - id: zap_a4_weekly_kpi_digest
+    goal: "Send KPI summary every Friday at 09:00 PT."
+    trigger:
+      app: schedule
+      event: weekly
+      config:
+        day: friday
+        time: "09:00"
+        timezone: "America/Los_Angeles"
+    actions:
+      - type: formatter.date
+        result:
+          week_start: "{{start_of_week(now(), 'monday')}}"
+          week_end: "{{week_start + 7d}}"
+      - type: google_sheets.upsert_row
+        sheet: Weekly Summary
+        key_fields: ["client", "week_start"]
+        formulas: true
+      - type: openai.chat_completion
+        model: gpt-4o-mini
+        prompt_template: kpi_email_prompt
+        inputs:
+          client: "{{client_name}}"
+          interactions: "{{interactions}}"
+          resolution_rate: "{{resolution_rate}}"
+          top_topics: "{{top_topics}}"
+          leads: "{{leads}}"
+          handoffs: "{{handoffs}}"
+      - type: slack.webhook
+        channel: "#analytics-kpi"
+        payload_template: kpi_summary
+        payload:
+          client: "{{client_name}}"
+          week_start: "{{week_start}}"
+          week_end: "{{week_end}}"
+          interactions: "{{interactions}}"
+          resolution_rate: "{{resolution_rate}}"
+          leads: "{{leads}}"
+          handoffs: "{{handoffs}}"
+          summary: "{{openai_response}}"
+      - type: gmail.send
+        to: "{{client_stakeholders}}"
+        subject: "Weekly KPI – {{client_name}} (week of {{week_start}})"
+        body: "{{openai_response}}"
+
+  - id: zap_a5_deploy_notice
+    goal: "Alert #ops-bot when a deploy or release is staged."
+    trigger:
+      any_of:
+        - app: notion
+          event: page_property_changed
+          property: status
+          value: READY-DEPLOY
+        - app: github
+          event: release_published
+          filter: "{{repository}} == 'chatbot-flow'"
+    actions:
+      - type: slack.webhook
+        channel: "#ops-bot"
+        payload_template: deploy_notice
+        payload:
+          env: "{{environment}}"
+          version: "{{release_tag}}"
+          changelog_url: "{{changelog_link}}"
+          rollback_steps: "{{rollback_summary}}"
+
+make:
+  instructions: >
+    Recreate Zap A1–A5 using HTTP modules. Ensure payloads match webhook_contracts.json.
+    Use Data Stores for rotation, and Gmail/Slack modules for notifications.
