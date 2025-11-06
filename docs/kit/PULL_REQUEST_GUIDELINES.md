@@ -1,6 +1,6 @@
 # Pull Request Guidelines
 
-To ensure quality and consistency, every pull request for a deliverable must meet the "PASS" criteria outlined below. Before submitting, please review the checklist for the relevant artifact (canonical copies now live in `orchestrator_kit/`) and confirm that all conditions are met.
+To ensure quality and consistency, every pull request for a deliverable must meet the "PASS" criteria outlined below. Before submitting, please review the checklist for the relevant artifact and confirm that all conditions are met.
 
 ## General Process
 1.  Create a feature branch for your work.

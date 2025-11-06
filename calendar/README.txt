@@ -1,1 +1,0 @@
-Import the milestones ICS we shared earlier into Google Calendar.
