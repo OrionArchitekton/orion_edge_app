@@ -10,3 +10,5 @@ output_schema:
   properties:
     label: { type: string }
     draft_id: { type: string }
+constraints:
+  - Answers must be ≤60 words; if unknown, defer with exact macro {DEFER:UNKNOWN}

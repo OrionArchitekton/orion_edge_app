@@ -12,3 +12,5 @@ output_schema:
   properties:
     run_id: { type: string }
     status: { type: string }
+constraints:
+  - Answers must be ≤60 words; if unknown, defer with exact macro {DEFER:UNKNOWN}

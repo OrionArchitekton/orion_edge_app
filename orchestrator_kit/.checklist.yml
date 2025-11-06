@@ -2,7 +2,10 @@ required:
   - 00_README.md
   - orchestrator_kit/artifacts/04_prompts.md
   - orchestrator_kit/automation/06_zaps_make.yaml
+  - orchestrator_kit/automation/automation_specs.md
+  - orchestrator_kit/README.md
   - scripts/faqpack_to_csv.js
+  - scripts/memo_recall.sh
   - src/utils/preferences.ts
 rules:
   prompts:

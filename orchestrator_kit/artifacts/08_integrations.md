@@ -47,7 +47,8 @@
 ### F. Logging & Alerts
 
 - Turn ON Zap A1 (Interactions) and Zap A2 (Unknowns + Slack ticket).
-- Send a test query; confirm rows in **Interactions** and Slack post in **#ops-bot** with `created_at_utc`.
+- Send a test query; confirm rows in **Interactions** (including `memory_hit`/`cloud_hit`) and Slack post in **#ops-bot** with `created_at_utc`.
+- Run `scripts/memo_recall.sh` after the test and post the summary to **#proj-chatbot** or **#memo-recall**.
 
 ## Test Plan (10 Queries)
 

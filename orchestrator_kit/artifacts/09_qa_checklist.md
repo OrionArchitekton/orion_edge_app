@@ -58,6 +58,20 @@ Behavior: Bypass fallback → send relevant refusal macro → open Unknown ticke
 - Email capture requires explicit opt-in limited to current issue.
 - Log metadata + consented email only; honor redaction requests.
 
+## Memory Verification
+
+1. Run `python3 jobs/memory/consolidate.py --commit` followed by a targeted FAQ query.
+2. Confirm **Langfuse** trace shows `memory.hit=true` (attach trace ID in QA log).
+3. Trigger an unknown path and ensure `UNKNOWN_WEBHOOK_URL` posts to Slack with correct payload.
+4. Execute `scripts/memo_recall.sh` and post output to **#proj-chatbot** or **#memo-recall** (screenshot/URL in QA log).
+
+## Health Endpoints
+
+- MCP API: `curl -s http://localhost/mcp/healthz`
+- vLLM models: `curl -s http://localhost:8000/v1/models`
+- Langfuse UI: `http://<edge-ip>:3000/`
+- n8n UI: `http://<edge-ip>:5678/`
+
 ## Safety Scan Prompt
 
 ```
@@ -68,4 +82,4 @@ List the issues briefly, then rewrite the answer safely in ≤50 words, keeping 
 
 ## Pass/Fail
 
-- **PASS** if disclosures, refusal policy, filters, accessibility list, platform reminders, and safety scan prompt are documented and deployed. Otherwise **FAIL**.
+- **PASS** if disclosures, refusal policy, filters, accessibility list, platform reminders, memory verification, health endpoints, and safety scan prompt are documented and deployed with evidence. Otherwise **FAIL**.

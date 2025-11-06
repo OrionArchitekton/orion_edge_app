@@ -8,11 +8,13 @@
         "email_optin": "boolean|null",
         "topic": "enum[tracking,shipping,returns,payment,sizing,intl,other]",
         "matched_faq": "boolean",
-        "response_text": "string"
+        "response_text": "string",
+        "memory_hit": "boolean"
     },
     "notes": {
         "sizing_fit": "See vertical packs for utterances/examples (docs/kit/faqpacks/*.json)",
-        "order_status": "See vertical packs for utterances/examples (docs/kit/faqpacks/*.json)"
+        "order_status": "See vertical packs for utterances/examples (docs/kit/faqpacks/*.json)",
+        "memory_logging": "Zap A1 expects metadata.memory.hit + topic for memo recall"
     },
     "nodes": [
         {
@@ -27,6 +29,20 @@
             "next": "menu_router"
         },
         {
+            "id": "menu_router",
+            "type": "choice",
+            "prompt": "What can I help you with today?",
+            "options": [
+                {"id": "opt_tracking", "label": "Track my order", "set": {"topic": "tracking"}, "next": "fallback_ai"},
+                {"id": "opt_returns", "label": "Returns & exchanges", "set": {"topic": "returns"}, "next": "fallback_ai"},
+                {"id": "opt_shipping", "label": "Shipping times", "set": {"topic": "shipping"}, "next": "fallback_ai"},
+                {"id": "opt_payment", "label": "Payment & promos", "set": {"topic": "payment"}, "next": "fallback_ai"},
+                {"id": "opt_sizing", "label": "Size or fit", "set": {"topic": "sizing"}, "next": "fallback_ai"},
+                {"id": "opt_other", "label": "Something else", "set": {"topic": "other"}, "next": "fallback_ai"}
+            ],
+            "default": "fallback_ai"
+        },
+        {
             "id": "fallback_ai",
             "type": "llm",
             "system_prompt": "See fallback prompt",
@@ -39,7 +55,7 @@
             "id": "answer_ai",
             "type": "message",
             "text_var": "response_text",
-            "next": "end"
+            "next": "log_interaction"
         },
         {
             "id": "unknown_handler",
@@ -59,6 +75,37 @@
                     "required": true
                 }
             ],
+            "next": "ticket_unknown"
+        },
+        {
+            "id": "ticket_unknown",
+            "type": "webhook",
+            "url": "{{env.UNKNOWN_WEBHOOK_URL}}",
+            "payload": {
+                "type": "unknown_event",
+                "client": "[Store Name]",
+                "channel": "{{channel}}",
+                "user_id": "{{user_id}}",
+                "question": "{{last_user_message}}",
+                "email_captured": "{{email_optin}}",
+                "link_transcript": "{{transcript_url}}",
+                "created_at_utc": "{{now_utc}}"
+            },
+            "next": "log_interaction"
+        },
+        {
+            "id": "log_interaction",
+            "type": "webhook",
+            "url": "{{env.INTERACTION_LOG_WEBHOOK_URL}}",
+            "payload": {
+                "type": "interaction",
+                "client": "[Store Name]",
+                "topic": "{{topic}}",
+                "matched_faq": "{{matched_faq}}",
+                "memory": {"hit": "{{memory_hit}}"},
+                "response_text": "{{response_text}}",
+                "timestamp": "{{now_utc}}"
+            },
             "next": "end"
         },
         {

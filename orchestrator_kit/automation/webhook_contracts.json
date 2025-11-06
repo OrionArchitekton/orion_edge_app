@@ -13,6 +13,15 @@
     "link_transcript": "url",
     "created_at_utc": "iso8601"
   },
+  "interaction": {
+    "type": "interaction",
+    "client": "string",
+    "topic": "string",
+    "matched_faq": "boolean",
+    "memory": { "hit": "boolean" },
+    "response_text": "string",
+    "timestamp": "iso8601"
+  },
   "deploy_event": {
     "type": "deploy_event",
     "client": "string",
@@ -36,7 +45,7 @@
 }
 ```
 
-**Mapping notes:** `unknown_event` originates in Zap 2; `deploy_event` from Zap 5; `kpi_summary` from Zap 3. Post all to **#ops‑bot** or **#analytics‑kpi** via Slack Webhook.
+**Mapping notes:** `interaction` feeds Zap 1 (Sheets + memo recall), `unknown_event` drives Zap 2, `kpi_summary` powers Zap 3, and `deploy_event` comes from Zap 5. Post all to Slack webhooks per `automation_specs.md`.
 
 ##### PASS/FAIL — webhook\_contracts.json
 

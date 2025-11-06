@@ -5,9 +5,9 @@
 **Steps:**
 
 1. Acknowledge in **#incidents** (template below).
-2. Triage: platform status, auth, rate‑limit, webhooks.
+2. Triage: platform status, auth, rate-limit, webhooks, memo recall output (`scripts/memo_recall.sh`).
 3. Mitigate: switch to **Maintenance Mode** message, notify client.
-4. Capture root cause + rollback.
+4. Capture root cause + rollback; rerun memo recall to confirm recovery.
 5. Postmortem ≤24h.
 
 **Maintenance Mode (customer‑facing):**\
@@ -30,4 +30,4 @@ Next update: {+30m}
 
 ##### PASS/FAIL — incident\_runbook.md
 
-- PASS if: #incidents exists + on‑call noted, MM message deployed, P1 drill completed, postmortem template used in last incident. Else FAIL.
+- PASS if: #incidents exists + on-call noted, MM message deployed, P1 drill completed, memo recall captured during incident, postmortem template used in last incident. Else FAIL.

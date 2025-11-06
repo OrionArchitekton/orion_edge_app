@@ -37,6 +37,8 @@ zaps:
           words_count: "{{word_count(response_text)}}"
           deferral_phrase_exact: "{{match_deferral(response_text)}}"
           model: "{{model_name}}"
+          memory_hit: "{{memory_hit}}"
+          cloud_hit: "{{cloud_hit}}"
 
   - id: zap_a2_unknown_ticket
     goal: "Escalate unknown questions to humans with rotation."
@@ -164,6 +166,8 @@ zaps:
           resolution_rate: "{{resolution_rate}}"
           leads: "{{leads}}"
           handoffs: "{{handoffs}}"
+          memory_hit_rate: "{{memory_hit_rate}}"
+          cloud_hit_rate: "{{cloud_hit_rate}}"
           summary: "{{openai_response}}"
       - type: gmail.send
         to: "{{client_stakeholders}}"

@@ -10,3 +10,5 @@ output_schema:
   properties:
     doc_url: { type: string }
     kpis: { type: object, additionalProperties: true }
+constraints:
+  - Answers must be ≤60 words; if unknown, defer with exact macro {DEFER:UNKNOWN}

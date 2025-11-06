@@ -23,6 +23,14 @@
 
 ## Stack Components
 
+### Environment Checklist (Biz Core)
+- `POSTGRES_URL` — Primary application + memory store
+- `REDIS_URL` — Queue/cache for automations
+- `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` — Tracing + memory linkage
+- `VLLM_BASE_URL` (optional) — Local model endpoint when not using OpenAI
+- Slack webhooks (`OPS`, `SALES`, `INCIDENTS`), OpenAI API key, Zapier service account
+- Template guidance: see `docs/ENV_TEMPLATES.md`
+
 ### Frontend (Static Sites)
 **Orion Intelligence Agency (orionintelligenceagency.com)**
 - **Host:** Netlify Free or GitHub Pages
@@ -115,6 +123,7 @@ TOTAL                       $15-$40/mo
 - Onboard 1-3 pilot clients
 - Manually tune prompts daily
 - Weekly KPI review in Sheets
+- Daily: run `scripts/memo_recall.sh` after `python3 jobs/memory/consolidate.py --commit` to confirm Langfuse memory.hit >= 90%
 
 ### Phase 2 (Month 2-3): Optimization
 - Add 2 more niche FAQs

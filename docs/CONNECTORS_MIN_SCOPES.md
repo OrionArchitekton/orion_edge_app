@@ -1,6 +1,6 @@
 # Minimal Connector Scopes
-- Gmail: INBOX read, draft create, send (approved)
-- Drive: folder-scoped per tenant
+- Gmail: **INBOX-only** read + draft create + send (no full mailbox scope)
+- Drive: folder-only access per tenant (KB ingest bucket)
 - Sheets: explicit (SEO/Leads/Report)
 - Calendar: single service
 - Slack: one webhook

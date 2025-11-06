@@ -18,3 +18,5 @@ output_schema:
   properties:
     accepted: { type: integer }
     rejected: { type: integer }
+constraints:
+  - Answers must be ≤60 words; if unknown, defer with exact macro {DEFER:UNKNOWN}

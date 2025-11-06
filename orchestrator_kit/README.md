@@ -19,6 +19,14 @@ This directory is now the canonical home for every asset the orchestrator team s
 - **LLM prompt safety:** `artifacts/04_prompts.md` and `prompts/bonus_prompts.md` (tone variants, fallback phrasing).
 - **Automation controls:** `automation/automation_specs.md` + `automation/06_zaps_make.yaml` (budgets, retry policy, redaction patterns).
 - **Operational assurance:** `artifacts/09_qa_checklist.md`, `artifacts/10_kpi_rollup.md`, `artifacts/12_monitoring.md`.
+- **Memo recall:** `scripts/memo_recall.sh` (daily 08:00 Slack-ready summary) + `docs/QUICKSTART.md` health checks.
+
+## Daily Orchestrator Checklist
+
+1. Run `scripts/memo_recall.sh` and post the output to `#proj-chatbot`.
+2. Review Langfuse dashboard for `memory.hit` and `cloud.hit` trends.
+3. Confirm `automation/automation_specs.md` KPI schedule succeeded (Zap 3).
+4. Update `guides/roles_matrix.md` RAG table if risk/blocked.
 
 Legacy launch assets remain under `docs/kit/` for historical reference (marketing packs, FAQ generators). When updating process docs or referencing artifacts, link to the paths above to avoid drift.
 

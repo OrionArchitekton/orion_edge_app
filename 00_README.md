@@ -4,7 +4,18 @@ This kit provides the single source of truth for the chatbot launch. All artifac
 
 > **Nov 2025 Update:** Canonical deliverables now live in `orchestrator_kit/`. Use `orchestrator_kit/README.md` → `MANIFEST.md` for quick links, and update prompts or docs to reference the new paths when contributing.
 
-Start here: `000_START_WORK_TEMPLATE.md` — copy this when beginning any agent task.
+## Quick Install
+
+```bash
+docker compose -f cosmocrat_v1/deploy/cosmocrat-v1.compose.yml up -d
+python3 jobs/memory/consolidate.py --commit
+```
+
+- MCP API health: `curl -s http://localhost/mcp/healthz`
+- vLLM models: `curl -s http://localhost:8000/v1/models`
+- Langfuse UI: `http://<edge-ip>:3000/`
+
+> Health checks & memory verification steps live in `docs/QUICKSTART.md`.
 
 ## 7-Day Execution Plan
 

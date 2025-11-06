@@ -12,10 +12,11 @@ Thanks for piloting the AI assistant. Here’s your first-week snapshot:
 • Interactions: {interactions}
 • Resolution rate: {resolution_rate}%
 • Leads captured (email opt-ins): {leads}
+• Memory hit-rate: {memory_hit_rate}% (cloud fallback {cloud_hit_rate}%)
 • Top topics: {topic_1}, {topic_2}, {topic_3}
 • Top 3 unanswered to add: 1) {u1} 2) {u2} 3) {u3}
 
-Quality & safety: No payment data collected in chat; unknowns routed to your inbox/Slack.
+Quality & safety: No payment data collected in chat; unknowns routed to your inbox/Slack. Daily memo recap posted to #proj-chatbot.
 
 Proposed next steps (7 days):
 1) Add the 3 answers above to the KB (we’ll draft + load).
@@ -37,7 +38,7 @@ Best,
 | **Pro**     | $600  | $200/mo | Everything in Basic + Shopify order lookup proxy (read-only), Messenger fallback, 2 updates/month, quarterly A/B test | ≤5,000 interactions/mo; priority email ≤1 business day. |
 | **Growth**  | $1,200 | $400/mo | Everything in Pro + monthly live review, KPI workbook, custom flow per quarter, priority incident response | ≤12,000 interactions/mo; shared on-call during business hours. |
 
-**Overages:** +$25 per additional 1,000 interactions. **Pauses:** month-to-month; pause anytime. **Compliance:** bot never handles payment data; Messenger replies respect the 24-hour rule.
+**Overages:** +$25 per additional 1,000 interactions. **Pauses:** month-to-month; pause anytime. **Compliance:** bot never handles payment data; Messenger replies respect the 24-hour rule. **Reporting:** price includes weekly KPI digest + daily memo recall summary.
 
 ## Agreement Bullet Points (one-page)
 
@@ -84,5 +85,5 @@ Alt for direct ask:
 
 ## Pass/Fail
 
-- **PASS** if email template, pricing table, agreement bullets, invoice template, and referral prompt are ready.  
+- **PASS** if email template, pricing table, agreement bullets, invoice template, referral prompt, and memory-aware talking points are ready.  
 - **FAIL** otherwise.

@@ -32,6 +32,8 @@ Restrict sharing to core agents; Zapier/Make connections should use service acco
 | L   | `words_count`           | number (derived)    | Count of reply words.                      |
 | M   | `deferral_phrase_exact` | boolean (derived)   | Exact match to required deferral string.   |
 | N   | `model`                 | text (optional)     | e.g. `gpt-4o-mini`.                        |
+| O   | `memory_hit`            | boolean             | Set by flow; used for memo recall script.  |
+| P   | `cloud_hit`             | boolean             | Tracks upstream fallbacks vs local stack.  |
 
 ### Unknowns (columns A–G required; H–L optional ops metadata)
 
@@ -90,7 +92,7 @@ Restrict sharing to core agents; Zapier/Make connections should use service acco
 
 ### Zap A1 — Interactions Log (must-have)
 - **Trigger:** Landbot or ManyChat new message/conversation.
-- **Actions:** Formatter step to redact card/email patterns → Append Row to **Interactions** (A–K) → optional update to populate derived fields.
+- **Actions:** Formatter step to redact card/email patterns → Append Row to **Interactions** (A–K) → optional update to populate derived fields (`words_count`, `deferral_phrase_exact`, `memory_hit`, `cloud_hit`).
 
 ### Zap A2 — Unknown Ticket Escalation (must-have)
 1. **Trigger:** ManyChat tag `unknown_needed` or fallback branch without KB match.  
@@ -106,7 +108,7 @@ Restrict sharing to core agents; Zapier/Make connections should use service acco
 ### Zap A4 — Weekly KPI Roll-Up (Friday 09:00 PT)
 - Compute week window, update **Weekly Summary** row per client.
 - Generate digest via OpenAI using KPI prompt (below).
-- Post `kpi_summary` payload to Slack `#analytics-kpi` and email stakeholders.
+- Post `kpi_summary` payload to Slack `#analytics-kpi` and email stakeholders (include memory hit-rate + cloud hit-rate from derived columns).
 
 ### Zap A5 — Ticket Resolution Close-Out (optional)
 - **Trigger:** Unknowns `status` becomes `Resolved`.

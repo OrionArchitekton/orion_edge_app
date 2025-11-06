@@ -38,7 +38,7 @@ The orchestrator now oversees a broader "business shop" scope. This manifest cap
 | Automation | `n8n/flows/*.json` | Low-code orchestration (content, KPI, inbox) | `n8n/flows/` | Documented in automation README | Scheduling & escalation guardrails |
 | Automation | `mcp/tools/*.yaml` | MCP nightly/ops tasks | `mcp/tools/` | Documented in automation README | Rate limiting, guardrail references per tool |
 | Automation | `jobs/memory/consolidate.py` | FAQ/transcript consolidation job | `jobs/memory/consolidate.py` | Referenced in automation README | Data hygiene guardrails |
-| Prompts | `prompts/agent_00_prompt.md`–`agent_12_prompt.md` | Live agent instructions | `orchestrator_kit/prompts/` | Historical copies deleted from `agent_workspaces/` | Each prompt points to guardrail docs (message standards, automation specs) |
+| Prompts | `prompts/agent_00_prompt.md`–`agent_13_prompt.md` | Live agent instructions | `orchestrator_kit/prompts/` | Historical copies deleted from `agent_workspaces/` | Each prompt points to guardrail docs (message standards, automation specs) |
 | Prompts | `prompts/start_work_template.md` | Base template for new agent work | `orchestrator_kit/prompts/start_work_template.md` | Legacy copy in root removed | Instructs teams to cite guardrail docs before editing |
 | Prompts | `prompts/bonus_prompts.md` | Extra tone + fallback variants | `orchestrator_kit/prompts/bonus_prompts.md` | Linked in launch kit | Reinforces LLM guardrails |
 | Collaboration | `workspaces/README.md` | Guidance for transient drafting | `orchestrator_kit/workspaces/README.md` | N/A | Explicitly states finals must live in artifacts/ |

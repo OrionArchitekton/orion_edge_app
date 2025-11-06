@@ -3,6 +3,7 @@
 - [ ] Repo present at /opt/orion/orion_edge_app
 - [ ] env/.env.core filled (PG/Redis/Langfuse/vLLM/Slack); re/ecom envs filled
 - [ ] docker compose up -d (deploy/cosmocrat-v1.compose.yml) succeeds
+- [ ] Memory Online / Recall enabled (`python3 jobs/memory/consolidate.py --commit`; Langfuse trace shows memory.hit=true)
 - [ ] Langfuse reachable; first trace exists
 - [ ] n8n flows imported; credentials created; set Active as needed
 - [ ] RE smoke test: lead_passthrough → Gmail drafts created

@@ -19,6 +19,8 @@
 | `top_topics`          | Use pivot/`QUERY` on `Interactions!E:E` filtered by week to extract top 3.                                            |
 | `wow_interactions`    | Week-over-week delta vs previous row for the same client.                                                             |
 | `wow_resolution_rate` | Week-over-week change vs previous row.                                                                                |
+| `memory_hit_rate`     | `=IFERROR(AVERAGE(FILTER(Interactions!$O:$O,Interactions!$A:$A>=week_start,Interactions!$A:$A<week_end,Interactions!$B:$B=client))*100,0)` |
+| `cloud_hit_rate`      | `=IFERROR(AVERAGE(FILTER(Interactions!$P:$P,Interactions!$A:$A>=week_start,Interactions!$A:$A<week_end,Interactions!$B:$B=client))*100,0)` |
 
 Insert formulas into the **Weekly Summary** tab so Zap A4 can upsert rows automatically.
 
@@ -57,6 +59,8 @@ Keep to 120 words, friendly, factual, and policy-safe (no guarantees). Close wit
   "top_topics": ["{{topic_1}}","{{topic_2}}","{{topic_3}}"],
   "wow_interactions": "{{wow_interactions}}",
   "wow_resolution_rate": "{{wow_resolution_rate}}",
+  "memory_hit_rate": "{{memory_hit_rate}}",
+  "cloud_hit_rate": "{{cloud_hit_rate}}",
   "notes": "{{summary_sentence}}"
 }
 ```
@@ -68,9 +72,10 @@ Keep to 120 words, friendly, factual, and policy-safe (no guarantees). Close wit
 3. Review OpenAI draft → ensure ≤120 words, no promises; edit if necessary.  
 4. Post JSON payload via Slack webhook; confirm message delivered.  
 5. Email stakeholders (client + internal) with same summary text.  
-6. Archive KPI row link in `#proj-chatbot` for traceability.
+6. Run `scripts/memo_recall.sh` and thread the output under the Slack digest.  
+7. Archive KPI row link in `#proj-chatbot` for traceability.
 
 ## Pass/Fail
 
-- **PASS** when metrics formulas are correct, Zap A4 sends on schedule, and Slack/email digests include interactions, resolution rate, leads, handoffs, top topics, and action recommendation.  
+- **PASS** when metrics formulas are correct, Zap A4 sends on schedule, Slack/email digests include interactions, resolution rate, leads, handoffs, top topics, memory hit-rate, cloud hit-rate, and an action recommendation.  
 - **FAIL** if digest missing, formulas broken, or metrics out of sync.

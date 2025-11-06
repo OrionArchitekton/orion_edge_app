@@ -15,6 +15,8 @@
 - Sheets `Unknowns` backlog (open tickets >24h triggers follow-up).
 - Landbot/ManyChat status pages; OpenAI usage dashboard (cap warnings at 80%).
 - Optional: UptimeRobot check on `/widget.js` and `/api/fallback` (Cloudflare Workers).
+- Daily memo recall output from `scripts/memo_recall.sh` (memory hit-rate + cloud hit-rate posted to Slack).
+- Health endpoints: MCP (`curl -s http://localhost/mcp/healthz`), vLLM (`curl -s http://localhost:8000/v1/models`), Langfuse UI (`http://<edge-ip>:3000/`), n8n UI (`http://<edge-ip>:5678/`).
 
 ## Incident Playbook
 
@@ -22,7 +24,8 @@
 2. **Triage:** platform status, auth failures, rate limits, webhook errors, upstream API status.  
 3. **Mitigate:** enable Maintenance Mode message, disable affected Zap, notify client via Slack/email.  
 4. **Remediate:** roll back to previous flow/prompt, purge bad deploy, or throttle traffic.  
-5. **Postmortem:** complete within 24 hours; capture root cause, fix, prevention.
+5. **Verify memo:** run `scripts/memo_recall.sh` and confirm memory/cloud rates recovered; capture Langfuse trace links.  
+6. **Postmortem:** complete within 24 hours; capture root cause, fix, prevention.
 
 **Maintenance Mode message (customer-facing):**
 > “Sorry—our assistant is briefly down. Please email support@[store]; we’ll reply ASAP.”
@@ -52,5 +55,5 @@ Next update: {+30m}
 
 ## Pass/Fail
 
-- **PASS** if on-call roster documented, maintenance message staged, alerting path active (`#ops-bot` and `#incidents`), and last incident drill/postmortem recorded.  
+- **PASS** if on-call roster documented, maintenance message staged, alerting path active (`#ops-bot` and `#incidents`), daily memo recall monitored, and last incident drill/postmortem recorded with memory stats.  
 - **FAIL** otherwise.
