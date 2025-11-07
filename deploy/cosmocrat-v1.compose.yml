@@ -43,7 +43,6 @@ services:
 
   clickhouse:
     image: clickhouse/clickhouse-server:24.8
-    restart: always
     environment:
       <<: *common-env
       CLICKHOUSE_DB: langfuse
