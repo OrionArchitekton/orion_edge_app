@@ -9,6 +9,27 @@
 - Fill environment files (see `docs/DEV_PLAYBOOK.md` and `docs/ENV_TEMPLATES.md`).
 - `docker compose -f deploy/cosmocrat-v1.compose.yml up -d`.
 
+### Traefik + ACME Prep (HTTPS + Slack Hooks)
+Before launching the stack on a public host:
+
+1. **Prepare ACME storage (required by Traefik’s LetsEncrypt resolver):**
+   ```bash
+   cd deploy
+   mkdir -p letsencrypt
+   touch letsencrypt/acme.json
+   chmod 600 letsencrypt/acme.json
+   ```
+2. **DNS:** Point `slack.orionbot.online` (or your equivalent host) to the edge box and keep the Cloudflare record in *DNS only* (grey cloud) until certificates issue via HTTP-01.
+3. **Compose file:** `deploy/cosmocrat-v1.compose.yml` already mounts `./letsencrypt` and routes the `slack-hooks` service through the `websecure` entrypoint with the `letsencrypt` resolver (lines `236-241`). Leave those labels intact when customizing domains.
+4. **Health checks after deploy:**
+   ```bash
+   ss -ltnp | egrep ':80|:443'                     # Traefik should listen on 80/443
+   docker logs traefik -n 200 | grep -i acme       # Look for successful certificate events
+   curl -I http://slack.orionbot.online/slack/health
+   curl -I https://slack.orionbot.online/slack/health
+   ```
+   Expect HTTP 200 from both health probes once the resolver finishes and the Slack webhook service is live.
+
 ## Step 3 — Automations & n8n
 - Open `http://<edge-ip>:5678/` and create the owner account (self-hosted n8n; no Cloud required).
 - Import bundled workflows:
@@ -70,7 +91,7 @@ For production deployments, update Traefik host rules in `deploy/cosmocrat-v1.co
 
 1. **Replace `ops.localhost` and `mcp.localhost`** with your actual domain names:
    - `ops.localhost` → `ops.yourdomain.com`
-   - `mcp.localhost` → `mcp.yourdomain.com`
+   - `mcp.localhost` → `mcp.yourdomain.com` (or use external Cloudflare Worker at `https://mcp.orionbot.online/`)
 
 2. **Add DNS A records** pointing to your edge host IP:
    ```

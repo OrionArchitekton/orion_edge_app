@@ -1,5 +1,8 @@
-### MCP health
+### MCP health (local)
 GET http://mcp.localhost/healthz
+
+### MCP health (external Cloudflare Worker)
+GET https://mcp.orionbot.online/healthz
 
 ### Langfuse ping (UI path)
 GET http://ops.localhost/langfuse

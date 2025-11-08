@@ -118,8 +118,17 @@ docker run -d \
 - **CSV not found:** Ensure CSV files exist in `templates/` directory
 - **Webhook errors:** Check webhook URL is valid and app is installed to workspace
 
+## Architecture
+
+This implementation uses a **webhook-first approach** (no OAuth tokens, no Socket Mode). This aligns with the no-API GPT Pro workflow and minimizes complexity.
+
+**When to consider full bot alternative:** If you need to read channel messages, DM users, or use interactive modals, see `docs/SLACK_ARCHITECTURE.md` for migration guidance.
+
 ## Related Documentation
 
+- `docs/SLACK_ARCHITECTURE.md` - Architecture decision and when to use webhook vs bot
+- `docs/SLACK_APP_SETUP.md` - Step-by-step Slack app configuration
+- `docs/SLACK_DECISION_CHECKLIST.md` - Quick decision guide
 - `orchestrator_kit/automation/csv_schemas.md` - CSV schema definitions
 - `docs/no-api-GPTpro-OrionRoute.md` - Full workflow documentation
 - `orchestrator_kit/prompts/operator_prompts.md` - Operator prompts

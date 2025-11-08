@@ -1,0 +1,13 @@
+{
+  "name": "slack-oauth-token-rotation",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "token_rotation.js",
+  "scripts": {
+    "exchange": "node token_rotation.js exchange",
+    "refresh": "node token_rotation.js refresh"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "slack-agent-integration",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Slack Bolt app with MCP agent integration and webhook fan-out",
+  "main": "app.js",
+  "scripts": {
+    "start": "node -r dotenv/config app.js",
+    "resolve-channels": "node -r dotenv/config resolve-channels.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.17.1",
+    "@slack/web-api": "^7.0.0",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.3.1"
+  }
+}
