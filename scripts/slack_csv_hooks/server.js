@@ -3,7 +3,7 @@ import express from "express";
 import { verifySlack } from "./verifySlack.js";
 import fetch from "node-fetch";
 import fs from "fs";
-import csv from "csv-parse/sync";
+import { parse } from "csv-parse/sync";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -16,9 +16,24 @@ const app = express();
 app.use("/slack", (req, res, next) => verifySlack(req, res, next));
 
 function loadCSV(path) {
-  const fullPath = join(__dirname, "../templates", path);
-  const raw = fs.readFileSync(fullPath, "utf8");
-  return csv.parse(raw, { columns: true, skip_empty_lines: true });
+  // Try multiple possible paths for templates
+  const paths = [
+    "/templates/" + path,  // Mounted volume
+    join(__dirname, "../templates", path),
+    join(__dirname, "../../templates", path),
+  ];
+  for (const fullPath of paths) {
+    try {
+      if (fs.existsSync(fullPath)) {
+        const raw = fs.readFileSync(fullPath, "utf8");
+        return parse(raw, { columns: true, skip_empty_lines: true });
+      }
+    } catch (e) {
+      continue;
+    }
+  }
+  console.error(`Could not find CSV file: ${path} (tried: ${paths.join(", ")})`);
+  return [];
 }
 
 const channels = loadCSV("channels.csv");     // name + webhook_url
@@ -82,6 +97,11 @@ app.post("/slack/mem", async (req,res)=>{
     ]
   });
   res.send("Memory bundle posted.");
+});
+
+// Health check endpoint
+app.get("/healthz", (req, res) => {
+  res.send("ok");
 });
 
 app.listen(process.env.PORT || 3000, ()=> console.log("Slack hooks app up"));

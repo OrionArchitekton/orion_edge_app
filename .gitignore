@@ -1,0 +1,74 @@
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.template
+*.env
+env/*.env
+**/.env
+**/.env.local
+**/.env.*.local
+
+# SSH keys
+*.pem
+*.key
+id_*
+*.pub
+!*.pub.example
+.ssh/id_*
+
+# Secrets and credentials
+secrets/generated/
+secrets/*.txt
+*.secret
+*.credentials
+*secret*
+*password*
+*token*
+*key*
+!package.json
+!package-lock.json
+!scripts/generate_secrets.sh
+!docs/SECRETS_MANAGEMENT.md
+
+# Slack tokens and secrets
+**/slack_agent/.env
+**/slack_oauth/.env
+**/slack_agent/channel-map.json
+**/slack_agent/*.log
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

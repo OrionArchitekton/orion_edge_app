@@ -1,0 +1,44 @@
+{
+  "#analytics-kpi": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#orion-ops": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#memo-recall": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#incidents": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#proj-chatbot": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#executive-daily-charter": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#infra-updates": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#sales": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#clients-store": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#orion-uploads": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#content-assets": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#cursor-orion": [
+    "https://hooks.slack.com/services/YOUR_TEAM_ID/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  ],
+  "#ops-bot": [],
+  "#sandbox": [],
+  "#apex-signals": [],
+  "#cosmocrat-api-ping": []
+}
