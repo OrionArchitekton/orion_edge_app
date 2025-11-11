@@ -210,7 +210,10 @@ services:
     environment:
       <<: *common-env
       EXEC_ANALYST_URL: https://mcp.orionbot.online/api/analyst
-      MCP_BASE_URL: http://mcp:8080
+      # MCP_BASE_URL protocol is configurable via MCP_PROTOCOL (default: http).
+      # If MCP is served over HTTPS or via a TLS proxy, set MCP_PROTOCOL=https.
+      MCP_PROTOCOL: ${MCP_PROTOCOL:-http}
+      MCP_BASE_URL: ${MCP_PROTOCOL}://mcp:8080
       STORAGE_PATH: /data/reports
       SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
       JOB_NAME: exec-daily-v3
