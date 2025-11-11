@@ -72,7 +72,7 @@ def post_to_slack(json_url: str, md_url: str, date: str, data: dict):
 
     try:
         requests.post(webhook_url, json=payload, timeout=10).raise_for_status()
-        print(f"[INFO] Posted digest to Slack")
+        print("[INFO] Posted digest to Slack")
     except Exception as e:
         print(f"[ERROR] Failed to post to Slack: {e}", file=sys.stderr)
 
@@ -93,7 +93,7 @@ def main():
         print("[INFO] Not in daily mode, exiting")
         return
 
-    print(f"[INFO] Calling MCP tool: ops.report.daily")
+    print("[INFO] Calling MCP tool: ops.report.daily")
     result = call_mcp_tool("ops.report.daily", {"date": date})
 
     if "error" in result:
