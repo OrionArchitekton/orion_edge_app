@@ -5,22 +5,26 @@ import crypto from "crypto";
 import fs from "fs";
 import fetch from "node-fetch";
 import { draftPlanWithAgent, runPlanStreamViaMCP } from "./agent-client.js";
-import { getBotToken } from "./token-manager.js";
+
 
 // Load channel mappings
-const CHANNEL_MAP_BY_NAME = JSON.parse(
-  fs.readFileSync("./channel-map.json", "utf8")
-).found || {};
+const CHANNEL_MAP_BY_NAME = (() => {
+  try {
+    return JSON.parse(fs.readFileSync("./channel-map.json", "utf8")).found || {};
+  } catch (e) {
+    console.warn(
+      "Warning: './channel-map.json' not found or invalid. Please run 'npm run resolve-channels'. Some features might not work correctly."
+    );
+    return {};
+  }
+})();
 
 // Load webhook mappings
 const WEBHOOK_MAP = JSON.parse(
   fs.readFileSync("./webhook-map.json", "utf8")
 );
 
-// Helper: Get channel ID from name
-function channelIdFrom(name) {
-  return CHANNEL_MAP_BY_NAME[name] || null;
-}
+
 
 // Helper: Sign webhook payload
 function sign(secret, payload) {
@@ -93,9 +97,7 @@ app.command("/plan", async ({ command, ack, respond, client }) => {
   await ack();
 
   const channelId = command.channel_id;
-  const channelName = Object.keys(CHANNEL_MAP_BY_NAME).find(
-    (name) => CHANNEL_MAP_BY_NAME[name] === channelId
-  ) || `#unknown-${channelId}`;
+
 
   try {
     // Open modal for plan creation
@@ -273,7 +275,7 @@ app.action("approve_run", async ({ ack, action, client, body }) => {
     return;
   }
 
-  const channelId = plan.channelId;
+  const {channelId} = plan;
   const channelName = Object.keys(CHANNEL_MAP_BY_NAME).find(
     (name) => CHANNEL_MAP_BY_NAME[name] === channelId
   ) || `#unknown-${channelId}`;

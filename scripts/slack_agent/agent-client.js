@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 
 const MCP_BASE_URL = process.env.MCP_BASE_URL || "http://mcp.localhost";
 const VLLM_BASE_URL = process.env.VLLM_BASE_URL || "http://vllm:8000/v1";
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const {OPENAI_API_KEY} = process.env;
 
 /**
  * Draft a plan using ChatGPT with MCP tools mounted
